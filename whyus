@@ -1,0 +1,140 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Rocket, Award, Headphones, Code, DollarSign } from 'lucide-react';
+
+const benefits = [
+  {
+    icon: Rocket,
+    title: 'Entrega Rápida',
+    description: 'Projetos entregues no prazo com agilidade e qualidade',
+    color: 'from-cyan-500 to-blue-500'
+  },
+  {
+    icon: Award,
+    title: 'Design Premium',
+    description: 'Interfaces modernas criadas por designers profissionais',
+    color: 'from-purple-500 to-pink-500'
+  },
+  {
+    icon: Headphones,
+    title: 'Suporte 24/7',
+    description: 'Assistência completa sempre que você precisar',
+    color: 'from-pink-500 to-rose-500'
+  },
+  {
+    icon: Code,
+    title: 'Tecnologia Moderna',
+    description: 'Código limpo com as melhores tecnologias do mercado',
+    color: 'from-orange-500 to-red-500'
+  },
+  {
+    icon: DollarSign,
+    title: 'Preço Justo',
+    description: 'Investimento acessível com excelente custo-benefício',
+    color: 'from-green-500 to-emerald-500'
+  }
+];
+
+export default function WhyUs() {
+  return (
+    <section className="py-24 bg-gradient-to-b from-gray-950 to-gray-900 relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 w-full h-full bg-gradient-to-b from-purple-500/5 to-transparent"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl md:text-6xl font-black mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Por Que Escolher
+            </span>
+            <br />
+            <span className="text-white">Nossa Agência?</span>
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Combinamos criatividade, tecnologia e experiência para entregar resultados excepcionais
+          </p>
+        </motion.div>
+
+        {/* Benefits Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto mb-12">
+          {benefits.map((benefit, index) => {
+            const IconComponent = benefit.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative"
+              >
+                <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 h-full">
+                  {/* Icon Container */}
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg`}>
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {benefit.description}
+                  </p>
+
+                  {/* Hover Glow Effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity pointer-events-none`}></div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Stats Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl p-8 border border-purple-500/20"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent mb-2">
+                500+
+              </div>
+              <div className="text-gray-400 font-medium">Projetos Entregues</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                98%
+              </div>
+              <div className="text-gray-400 font-medium">Taxa de Satisfação</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent mb-2">
+                5+
+              </div>
+              <div className="text-gray-400 font-medium">Anos de Experiência</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent mb-2">
+                24/7
+              </div>
+              <div className="text-gray-400 font-medium">Suporte Disponível</div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
