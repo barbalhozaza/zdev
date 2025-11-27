@@ -1,0 +1,121 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Monitor, ShoppingCart, Zap, Smartphone, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const services = [
+  {
+    icon: Monitor,
+    title: 'Site Institucional',
+    description: 'Sites profissionais que transmitem credibilidade e fortalecem sua marca no digital.',
+    color: 'from-cyan-500 to-blue-600',
+    features: ['Design Responsivo', 'SEO Otimizado', 'Alta Performance']
+  },
+  {
+    icon: ShoppingCart,
+    title: 'E-commerce',
+    description: 'Lojas virtuais completas com sistema de pagamento integrado e gestão facilitada.',
+    color: 'from-purple-500 to-pink-600',
+    features: ['Carrinho Completo', 'Pagamentos Integrados', 'Gestão de Estoque']
+  },
+  {
+    icon: Zap,
+    title: 'Landing Page',
+    description: 'Páginas de conversão otimizadas para transformar visitantes em clientes.',
+    color: 'from-pink-500 to-orange-600',
+    features: ['Alta Conversão', 'Design Impactante', 'A/B Testing']
+  },
+  {
+    icon: Smartphone,
+    title: 'Aplicativos',
+    description: 'Apps mobile nativos e híbridos para iOS e Android com experiência premium.',
+    color: 'from-orange-500 to-red-600',
+    features: ['iOS e Android', 'Design Nativo', 'Push Notifications']
+  }
+];
+
+export default function Services() {
+  return (
+    <section id="services" className="py-24 bg-gray-950 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl md:text-6xl font-black mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Nossos Serviços
+            </span>
+          </h2>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Soluções digitais completas para transformar seu negócio
+          </p>
+        </motion.div>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group"
+            >
+              <div className="relative h-full bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 transform hover:-translate-y-2">
+                {/* Icon */}
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg`}>
+                  <service.icon className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Title */}
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  {service.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  {service.description}
+                </p>
+
+                {/* Features */}
+                <ul className="space-y-2 mb-6">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm text-gray-500">
+                      <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.color}`}></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Button */}
+                <Button
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  variant="ghost"
+                  className="w-full text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 hover:from-purple-300 hover:to-pink-300 font-semibold group/btn"
+                >
+                  Saiba Mais
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
+
+                {/* Gradient Overlay on Hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity pointer-events-none`}></div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
