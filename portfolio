@@ -1,0 +1,147 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ExternalLink, Monitor, Smartphone, ShoppingBag, Zap } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const projects = [
+  {
+    title: 'E-commerce Fashion',
+    category: 'Loja Virtual',
+    icon: ShoppingBag,
+    gradient: 'from-purple-500 to-pink-600',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop'
+  },
+  {
+    title: 'Landing Page SaaS',
+    category: 'Conversão',
+    icon: Zap,
+    gradient: 'from-cyan-500 to-blue-600',
+    image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&auto=format&fit=crop'
+  },
+  {
+    title: 'App de Delivery',
+    category: 'Mobile',
+    icon: Smartphone,
+    gradient: 'from-orange-500 to-red-600',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop'
+  },
+  {
+    title: 'Site Corporativo',
+    category: 'Institucional',
+    icon: Monitor,
+    gradient: 'from-green-500 to-emerald-600',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop'
+  },
+  {
+    title: 'Plataforma Educacional',
+    category: 'Web App',
+    icon: Monitor,
+    gradient: 'from-indigo-500 to-purple-600',
+    image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&auto=format&fit=crop'
+  },
+  {
+    title: 'App Fitness',
+    category: 'Mobile',
+    icon: Smartphone,
+    gradient: 'from-pink-500 to-rose-600',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop'
+  }
+];
+
+export default function Portfolio() {
+  return (
+    <section id="portfolio" className="py-24 bg-gray-900 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl md:text-6xl font-black mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Nosso Portfólio
+            </span>
+          </h2>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Projetos que transformaram negócios e geraram resultados
+          </p>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group cursor-pointer"
+            >
+              <div className="relative overflow-hidden rounded-2xl bg-gray-800 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20">
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                  
+                  {/* Icon Badge */}
+                  <div className={`absolute top-4 right-4 w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-12 transition-all`}>
+                    <project.icon className="w-6 h-6 text-white" />
+                  </div>
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-2xl transform scale-0 group-hover:scale-100 transition-transform duration-300`}>
+                      <ExternalLink className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 bg-gradient-to-r ${project.gradient} text-white`}>
+                    {project.category}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* View More Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center"
+        >
+          <a
+            href="https://wa.me/5514998083537"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-10 py-6 text-lg rounded-full shadow-2xl shadow-purple-500/50 hover:shadow-3xl hover:shadow-purple-500/70 transition-all transform hover:scale-105"
+          >
+            Ver Portfólio Completo
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
